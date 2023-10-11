@@ -1,0 +1,57 @@
+# Reload sxhkd config
+ctrl + shift + r
+	pkill -USR1 -x sxhkd
+
+# Control audio
+ctrl + shift + KP_Begin
+	$SCR/getvol p
+ctrl + shift + KP_Down
+	$SCR/getvol d
+ctrl + shift + KP_Insert
+	$SCR/getvol m
+ctrl + shift + KP_Left
+	$SCR/getvol b
+ctrl + shift + KP_Right
+	$SCR/getvol n
+ctrl + shift + KP_Up
+	$SCR/getvol u
+
+# Launch software
+alt + shift + d
+	dbus-launch thunar
+alt + shift + l
+	lutris
+alt + shift + n
+	transmission-gtk
+alt + shift + p
+	keepassxc
+alt + shift + r
+	firefox --kiosk -P discord
+alt + shift + s
+	spotify
+alt + shift + t
+	chromium
+alt + shift + v
+	virtualbox
+alt + shift + x
+	firefox -P default
+
+# Launch scripts & tools
+ctrl + shift + 7
+ 	$SCR/bmark replace
+ctrl + shift + b
+ 	$SCR/bmark add
+alt + shift + q
+	$SCR/menu
+ctrl + shift + Delete
+ 	$SCR/bmark delete
+ctrl + shift + Insert
+ 	$SCR/bmark insert
+ctrl + shift + Print
+	$SCR/scrot
+ctrl + shift + KP_Add
+	gpick
+ctrl + shift + KP_Divide
+	pavucontrol
+ctrl + shift + KP_Multiply
+	gpick -o -s | xclip -sel c

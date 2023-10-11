@@ -1,0 +1,18 @@
+#!/bin/sh
+
+choices="quitdwm\npoweroff\nreboot\n"
+
+chosen=$(echo -e "$choices" | dmenu -i)
+
+case "$chosen" in
+	quitdwm)
+		killall xinit
+		;;
+	poweroff)
+		doas /sbin/poweroff
+		;;
+	reboot)
+		doas /sbin/reboot
+		;;
+esac
+

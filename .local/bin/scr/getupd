@@ -1,0 +1,5 @@
+#!/bin/bash
+upd=$(checkupdates)
+count="${upd//[^>]}"
+[[ ${#count} -ge 10 ]] && 
+printf "Updates Available"

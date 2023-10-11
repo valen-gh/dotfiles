@@ -1,0 +1,48 @@
+#!/bin/sh
+LAYOUT=$(setxkbmap -print | awk -F"+" '/xkb_symbols/ {print $2}')
+file=$HOME'/.local/share/bmarks'
+setxkbmap $LAYOUT
+[ -f $file ] || touch $file
+
+window_id=$(xdotool search --onlyvisible --class "firefox")
+[[ -n $window_id ]] && {
+xdotool key --window $window_id --delay 20 --clearmodifiers ctrl+l ctrl+c Escape
+case $1 in
+    add)
+	bookmark=$(xclip -o -selection clipboard | tr -d '[:blank:]')
+	name=$(dmenu -p 'Add Bookmark' -sb '#839073' <<< '')
+	[[ -n $name ]] &&
+	{ [[ $bookmark == http?(s)* || $bookmark == www* || $bookmark == *.onion?(/) ]] ||
+	{ notify-send "Bookmark error" "Wrong format" && exit 1 ;} &&
+	{ [[ $bookmark != */ ]] && bookmark=$bookmark/ ;}
+	grep $bookmark $file &&
+	{ notify-send "Bookmark error" "Url already exists" && exit 1;} ||
+	i=$( grep "$name" $file | tail -1 | awk -F'|' '{print $1}' | awk -F '#' '{print $2}' \
+	sed 's/#//' | { read i; [[ -z $i  ]] && i=2 || (( i++ )); printf $i ;})
+	{ grep "$name" $file && printf $name'#'$i' | '$bookmark >> $file ||
+	printf $name' | '$bookmark >> $file ;} &&
+	sort -V $file -o $file &&
+	notify-send "Bookmark added successfully" "$bookmark" ;}
+	;;
+    insert)
+	paste=$(cat $file | sed 's/ |.*//' | dmenu -p "Bookmarks" -i \
+	| { read x; [[ -n "$x" ]] && grep "$x" $file | head -1 ;} | rev | awk '{print $1;}' | rev)
+	xdotool type $paste && xdotool key Return
+	;;
+    replace)
+	query=$(xclip -o selection clipboard | cut -d "/" -f4-) 
+	paste=$(cat $file | sed 's/ |.*//' | dmenu -p "Bookmarks" -i \
+	| { read x; grep "$x" $file | head -1 ;} | rev | awk '{print $1;}' | rev)
+
+	xdotool type $paste$query && xdotool key Return
+	;;
+    delete)
+	name=$(cat $file | sed 's/ |.*//' | dmenu -p 'Delete Bookmark' -i -sb '#985f6f')
+	bookmark=$(grep "$name" $file | head -1)
+	[[ -n $name ]] && grep "$name" $file &&
+	option=$(printf 'Y\nN' | dmenu -p 'Are you sure?' -i -sb '#985F6F')
+	[[ $option == Y ]] && sed -i "s;$bookmark;;" $file &&
+	sed -i '/^[[:space:]]*$/d' $file &&
+	notify-send "Bookmark deleted successfully" "$name"
+	;;
+esac ;}

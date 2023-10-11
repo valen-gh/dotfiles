@@ -1,0 +1,22 @@
+#!/bin/sh
+[ -f $HOME/.config/X11/xresources ] && xrdb -merge $HOME/.config/X11/xresources
+[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && eval $(/usr/bin/dbus-launch --exit-with-session --sh-syntax)
+lxsession &
+
+# Keyboard
+sxhkd &
+
+# Image
+feh --bg-fill --no-fehbg --randomize ~/Pictures/Wallpapers/* &
+#xcompmgr &
+
+# Audio
+pipewire &
+
+# Notifications
+dunst &
+
+# DE / WM
+#exec startxfce4
+dwmblocks &
+exec dwm
