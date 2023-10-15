@@ -34,4 +34,4 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export SCR="$HOME/.local/bin/scr"
 
-export PS1='\[\033[38;5;73m\][\[$(tput bold)\]\u@\h\[$(tput sgr0)\] \W\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;73m\]]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]'
+export PS1="\[$(tput bold)\]\[$(tput setaf 109)\][\u@\h \[$(tput setaf 7)\]\W\[$(tput bold)\]\[$(tput setaf 109)\]]$\[$(tput sgr0)\] "

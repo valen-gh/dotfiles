@@ -19,4 +19,7 @@ dunst &
 # DE / WM
 #exec startxfce4
 dwmblocks &
-exec dwm
+while true; do
+    dwm
+done
+

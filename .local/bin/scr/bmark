@@ -10,7 +10,7 @@ xdotool key --window $window_id --delay 20 --clearmodifiers ctrl+l ctrl+c Escape
 case $1 in
     add)
 	bookmark=$(xclip -o -selection clipboard | tr -d '[:blank:]')
-	name=$(dmenu -p 'Add Bookmark' -sb '#839073' <<< '')
+	name=$(dmenu -p 'Add Bookmark' -sf "#B8BB26" < /dev/null)
 	[[ -n $name ]] &&
 	{ [[ $bookmark == http?(s)* || $bookmark == www* || $bookmark == *.onion?(/) ]] ||
 	{ notify-send "Bookmark error" "Wrong format" && exit 1 ;} &&
@@ -31,13 +31,12 @@ case $1 in
 	;;
     replace)
 	query=$(xclip -o selection clipboard | cut -d "/" -f4-) 
-	paste=$(cat $file | sed 's/ |.*//' | dmenu -p "Bookmarks" -i \
+	paste=$(cat $file | sed 's/ |.*//' | dmenu -p "Bookmarks" -sf '#8EC07C' -i \
 	| { read x; grep "$x" $file | head -1 ;} | rev | awk '{print $1;}' | rev)
-
 	xdotool type $paste$query && xdotool key Return
 	;;
     delete)
-	name=$(cat $file | sed 's/ |.*//' | dmenu -p 'Delete Bookmark' -i -sb '#985f6f')
+	name=$(cat $file | sed 's/ |.*//' | dmenu -p 'Delete Bookmark' -sf '#FB4934' -i)
 	bookmark=$(grep "$name" $file | head -1)
 	[[ -n $name ]] && grep "$name" $file &&
 	option=$(printf 'Y\nN' | dmenu -p 'Are you sure?' -i -sb '#985F6F')

@@ -1,18 +1,20 @@
 #!/bin/sh
 
-choices="quitdwm\npoweroff\nreboot\n"
+choices="Quit dwm\nRefresh dwm\nReboot\nPower off"
 
-chosen=$(echo -e "$choices" | dmenu -i)
+chosen=$(echo -e "$choices" | dmenu -p "Menu" -i)
 
 case "$chosen" in
-	quitdwm)
+	"Quit dwm")
 		killall xinit
 		;;
-	poweroff)
-		doas /sbin/poweroff
+	"Refresh dwm")
+		killall dwm
 		;;
-	reboot)
-		doas /sbin/reboot
+	"Reboot")
+		doas /usr/bin/reboot
 		;;
+	"Power off")
+		doas /usr/bin/poweroff
 esac
 

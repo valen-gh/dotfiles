@@ -22,18 +22,19 @@ EOF
 case $1 in
 	u)
 		[ $vol -lt 100 ] && pamixer -i 5
-		pkill -RTMIN+1 dwmblocks
+		pkill -RTMIN+2 dwmblocks
 		;;
 	d)
 		[ $vol -gt 0 ] && pamixer -d 5
-		pkill -RTMIN+1 dwmblocks
+		pkill -RTMIN+2 dwmblocks
 		;;
 	m)
 		pamixer -t
-		pkill -RTMIN+1 dwmblocks
+		pkill -RTMIN+2 dwmblocks
 		;;
 	p)
 		playerctl -p spotify play-pause
+		pkill -RTMIN+1 dwmblocks
 		;;
 	n)
 		playerctl -p spotify next
@@ -42,7 +43,9 @@ case $1 in
 		playerctl -p spotify previous
 		;;
 	t)
-		[ "$vol_human"  == "muted" ] && printf "M" || printf "$vol"
+		[ "$vol_human" == "muted" ] && printf "v:M" || {
+		[[ $vol -lt 30 ]] && printf "v:$vol" || {
+		[[ $vol -lt 65 ]] && printf "v:$vol" || printf "v:$vol" ;} ;}
 		;;
 	*)
 		help

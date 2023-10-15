@@ -1,0 +1,3 @@
+#!/bin/bash
+date=$(date '+%a %d %b %H:%M')
+printf "$date"

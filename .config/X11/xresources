@@ -1,1 +1,1 @@
-#include "./themes/faux.theme"
+#include "./xresources.d/gruvbox.xresources"

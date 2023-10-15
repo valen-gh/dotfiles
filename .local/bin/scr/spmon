@@ -4,6 +4,6 @@ interface=org.mpris.MediaPlayer2.Player
 dbus-monitor --profile "type='signal',interface='$interface'" |
 while read -r line; do
 		sleep .035 &&
-		pkill -RTMIN+2 dwmblocks
+		pkill -RTMIN+1 dwmblocks
 done
 

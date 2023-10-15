@@ -50,7 +50,7 @@ ctrl + shift + Insert
 ctrl + shift + Print
 	$SCR/scrot
 ctrl + shift + KP_Add
-	gpick
+	gpick --no-newline
 ctrl + shift + KP_Divide
 	pavucontrol
 ctrl + shift + KP_Multiply
