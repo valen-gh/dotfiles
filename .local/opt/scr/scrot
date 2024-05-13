@@ -1,0 +1,2 @@
+#!/bin/bash
+scrot -l style=solid,width=2,color="red" -s -F "$HOME/Pictures/Screenshots/%Y-%M-%d" -e 'nsxiv "$f"'

@@ -1,0 +1,45 @@
+#!/bin/bash
+shopt -s extglob
+alias nvim='command -v nvim &> /dev/null || alias nvim=vim'
+dir=$HOME/Documents/Notes
+
+mkdir -p "$dir"
+
+action=$(printf "Create Note\nRead or Modify Note\nDelete Note" | dmenu -sf '#b8bb26' -p "Notes")
+
+case $action in
+    "Create Note")
+        note_title=$(dmenu -p 'Note Title' -sf '#b8bb26' < /dev/null)
+        filename="$(date +'%Y-%m-%d')_${note_title}.md"
+        [ -n "$note_title" ] && { cd $dir
+        sed "s/# My Markdown Note/# $note_title/" "$dir/template.md" > "$filename" &&
+        initial_checksum=$(md5sum "$filename")
+        st -- nvim "$filename"
+        new_checksum=$(md5sum "$filename")
+        [ "$initial_checksum" == "$new_checksum" ] && rm "$filename" ||
+	final_note_title=$(head -n 1 "$dir/$filename" | sed 's/^# //')
+        mv "$dir/$filename" "$dir/$(date +'%Y-%m-%d')_${final_note_title}.md" &&
+	notify-send "Note Created" "$final_note_title" ;}
+        ;;
+    "Read or Modify Note")
+        selected_note=$(ls $dir/!(template.md) | awk -F '/' '{print $NF}' |\
+	dmenu -l 10 -sf '#83a598' -p "Select Note")
+        [ -n "$selected_note" ] && {
+	initial_checksum=$(md5sum "$selected_note")
+	st -- nvim "$dir/$selected_note"
+	new_checksum=$(md5sum "$selected_note")
+        [ "$initial_checksum" != "$new_checksum" ] && {
+	new_note_title="$(date +'%Y-%m-%d')_$(head -n 1 "$selected_note" | sed 's/^# //')"
+	mv "$selected_note" "$dir/$new_note_title.md" &&
+	notify-send "Note Modified" "$new_note_title" ;} ;}
+        ;;
+    "Delete Note")
+	note_to_delete=$(ls $dir/!(template.md) | awk -F '/' '{print $NF}' |\
+	dmenu -l 10 -sf '#e74c3c' -p "Delete Note")
+        [ -n "$note_to_delete" ] &&
+        confirmation=$(printf "Yes\nNo" | dmenu -p 'Are you sure?' -sf '#e74c3c')
+        [ "$confirmation" = "Yes" ] && rm "$dir/$note_to_delete" &&
+	notify-send "Note Deleted" "$note_to_delete"
+        ;;
+esac
+

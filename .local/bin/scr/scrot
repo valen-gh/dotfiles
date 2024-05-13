@@ -1,2 +1,0 @@
-#!/bin/bash
-scrot -l width=2,color="#FB4934",mode=edge -s -q 75 -s "$HOME/Pictures/Screenshots/%Y-%m-%d_$wx$h"

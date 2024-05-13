@@ -1,0 +1,2 @@
+#!/bin/sh
+( sleep 2 && { pamixer -i 0 && pkill -RTMIN+2 dwmblocks ;} )

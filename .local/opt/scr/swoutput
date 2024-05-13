@@ -1,0 +1,13 @@
+#!/bin/bash
+
+file="$XGD_DATA_HOME/audio_outputs"
+[ -z "$file" ] && mkdir "$file" 
+
+outputs=$(pactl list sinks | awk '/Name: /{print $2}')
+
+# Use dmenu to display a list of outputs and select one
+selected_output=$(echo "$outputs" | dmenu -p "Select an audio output:")
+
+# Change the default audio sink to the selected output
+pactl set-default-sink "$selected_output"
+

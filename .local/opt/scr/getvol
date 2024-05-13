@@ -38,16 +38,24 @@ case $1 in
 		;;
 	n)
 		playerctl -p spotify next
+		pkill -RTMIN+1 dwmblocks
 		;;
 	b)
 		playerctl -p spotify previous
+		pkill -RTMIN+1 dwmblocks
 		;;
 	t)
 		[ "$vol_human" == "muted" ] && printf "v:M" || {
-		[[ $vol -lt 30 ]] && printf "v:$vol" || {
-		[[ $vol -lt 65 ]] && printf "v:$vol" || printf "v:$vol" ;} ;}
+		[[ $vol -lt 30 ]] && printf "\x01v:$vol" || {
+		[[ $vol -lt 65 ]] && printf "\x01v:$vol" || printf "\x01v:$vol" ;} ;}
 		;;
 	*)
 		help
 		;;
 esac
+
+
+case "$BLOCK_BUTTON" in
+    1) xdo activate -N Spotify ;;
+esac
+

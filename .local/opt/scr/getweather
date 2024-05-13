@@ -1,0 +1,2 @@
+#!/bin/bash
+st -c "weather" -g "125x40" -e bash -c "curl wttr.in && bash"

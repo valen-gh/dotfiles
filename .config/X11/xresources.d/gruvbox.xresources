@@ -50,8 +50,12 @@
 *.selbgcolor:		#3c3836
 *.selbordercolor:	#83a598
 *.selfgcolor:		#83a598
-*.spbgcolor:		#3c3836
-*.spfgcolor:		#8ec07c
+*.songbgcolor:		#3c3836
+*.songfgcolor:		#8ec07c
+*.updbgcolor:		#1d2021
+*.updfgcolor:		#83a598
+*.errbgcolor:		#1d2021
+*.errfgcolor:		#fb4934
 
 !-------!
 ! dmenu !

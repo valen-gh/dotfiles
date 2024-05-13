@@ -1,0 +1,12 @@
+#!/bin/bash
+status=$(playerctl -p spotify status 2>&1)
+
+[[ $status == "No players found" ]] && exit 0 || {
+artist=$(playerctl -p spotify metadata xesam:artist)
+title=$(playerctl -p spotify metadata xesam:title | awk -F '-' '{print $1}' | awk '{$1=$1};1')
+[[ $status == "Playing" ]] && printf "\x05  $artist - $title \x01" ||
+{ [[ $status == "Paused" ]] && printf "\x05  $artist - $title \x01" ;} ;}
+
+case "$BLOCK_BUTTON" in
+    1) notify-send "HI" ;;
+esac

@@ -8,7 +8,7 @@ sxhkd &
 
 # Image
 feh --bg-fill --no-fehbg --randomize ~/Pictures/Wallpapers/* &
-#xcompmgr &
+xcompmgr &
 
 # Audio
 pipewire &
@@ -18,6 +18,7 @@ dunst &
 
 # DE / WM
 #exec startxfce4
+#exec startplasma-x11
 dwmblocks &
 while true; do
     dwm

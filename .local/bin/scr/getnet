@@ -1,2 +1,0 @@
-#!/bin/bash
-nc -zw1 88.198.92.222 53 || printf "Offline"

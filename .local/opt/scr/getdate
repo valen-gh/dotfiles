@@ -1,0 +1,12 @@
+#!/bin/bash
+date=$(date '+%a %d %b %H:%M')
+printf "$date "
+
+#!/bin/sh
+
+case "$BLOCK_BUTTON" in
+	1) notify-send "CPU usage" "$(ps axch -o cmd,%cpu --sort=-%cpu | head)" ;;
+	2) notify-send "CPU usage" "$(ps axch -o cmd,%cpu --sort=-%cpu | head)" ;;
+	3) notify-send "CPU usage" "$(ps axch -o cmd,%cpu --sort=-%cpu | head)" ;;
+esac
+
