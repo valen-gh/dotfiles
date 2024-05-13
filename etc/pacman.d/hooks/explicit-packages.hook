@@ -1,0 +1,12 @@
+#/etc/pacman.d/hooks/explicit-packages.hook
+
+[Trigger]
+Operation = Install
+Type = Package
+Target = *
+
+[Action]
+Description = Save Updated List of Explicitly Installed Packages
+When = PostTransaction
+Exec = /usr/bin/bash -c "pacman -Qqen > ~/.local/share/explicit-packages"
+

@@ -1,0 +1,11 @@
+#/etc/pacman.d/hooks/update-done.hook
+
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Remove Updates Available notification
+When = PostTransaction
+Exec = /usr/bin/bash -c "pkill -RTMIN+3 dwmblocks"
