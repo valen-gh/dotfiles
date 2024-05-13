@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1713024663026428-1</unique-id>
+	<command>st -d &quot;%f&quot;</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>bleachbit</icon>
+	<name>Clean Metadata</name>
+	<submenu></submenu>
+	<unique-id>1713026072852598-1</unique-id>
+	<command>st -c &quot;exiftool&quot; -e bash -c &quot;exiftool -overwrite_original_in_place -all= %F &amp;&amp; sleep 5&quot;
+</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>video-x-generic</icon>
+	<name>Add to watch later</name>
+	<submenu></submenu>
+	<unique-id>1713295127873308-1</unique-id>
+	<command>/opt/scr/wlat %f</command>
+	<description>Add to watch later</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+	<video-files/>
+</action>
+</actions>
