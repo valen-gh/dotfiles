@@ -1,0 +1,73 @@
+# Reload sxhkd config
+ctrl + shift + r
+	pkill -USR1 -x sxhkd
+
+# Control audio
+ctrl + shift + KP_Begin
+	$SCR/getvol p
+ctrl + shift + KP_Down
+	$SCR/getvol d
+ctrl + shift + KP_Insert
+	$SCR/getvol m
+ctrl + shift + KP_Left
+	$SCR/getvol b
+ctrl + shift + KP_Right
+	$SCR/getvol n
+ctrl + shift + KP_Up
+	$SCR/getvol u
+
+# Control color
+ctrl + shift + Up
+	blugon -S 5800
+ctrl + shift + Left
+	blugon -S -200
+ctrl + shift + Right
+	blugon -S +200
+
+# Launch software
+alt + shift + d
+	dbus-launch thunar
+alt + shift + g
+	$HOME/.local/opt/ungoogled-chromium
+alt + shift + i
+	pamac-manager
+alt + shift + l
+	xdo activate -N "Lutris" | lutris
+alt + shift + n
+	xdo activate -N "Transmission" | transmission-gtk
+alt + shift + p
+	xdo activate -N "KeePassXC" | keepassxc
+alt + shift + s
+	xdo activate -N "Spotify" | spotify
+alt + shift + t
+    	xdo activate -N "firefox tl" | firefox --class "firefox tl" -P tl
+alt + shift + v
+	virtualbox
+alt + shift + w
+    	xdo activate -N "firefox wa" | firefox --class "firefox wa" -P wa
+alt + shift + x
+    	firefox -P default
+
+# Launch scripts & tools
+ctrl + shift + 7
+ 	$SCR/bmark replace
+ctrl + shift + b
+ 	$SCR/bmark add
+ctrl + shift + w
+	$SCR/getweather
+alt + shift + q
+	$SCR/menu
+ctrl + alt + Delete
+	st -c "htop" -g "120x40" -e bash -c "htop; bash"
+ctrl + shift + Delete
+ 	$SCR/bmark delete
+ctrl + shift + Insert
+ 	$SCR/bmark insert
+ctrl + shift + Print
+	$SCR/scrot
+ctrl + shift + KP_Add
+	gpick --no-newline
+ctrl + shift + KP_Divide
+	pavucontrol
+ctrl + shift + KP_Multiply
+	gpick -o -s | xclip -sel c
