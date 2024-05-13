@@ -29,6 +29,8 @@ alt + shift + d
 	dbus-launch thunar
 alt + shift + g
 	$HOME/.local/opt/ungoogled-chromium
+alt + shift + i
+	pamac-manager
 alt + shift + l
 	xdo activate -N "Lutris" | lutris
 alt + shift + n
