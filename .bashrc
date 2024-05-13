@@ -8,7 +8,7 @@ set -o vi
 
 # Directories
 alias ..='cd ..'
-alias cdwm="cd $HOME/.local/opt/dwm-tagr"
+alias cdwm="cd $HOME/.local/opt/dwm"
 alias cnf="cd $XDG_CONFIG_HOME"
 alias doc="cd $HOME/Documents"
 alias dot="cd $HOME/.config/dotfiles.git"
