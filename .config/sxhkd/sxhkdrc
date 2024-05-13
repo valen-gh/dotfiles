@@ -16,31 +16,43 @@ ctrl + shift + KP_Right
 ctrl + shift + KP_Up
 	$SCR/getvol u
 
+# Control color
+ctrl + shift + Up
+	blugon -S 5800
+ctrl + shift + Left
+	blugon -S -200
+ctrl + shift + Right
+	blugon -S +200
+
 # Launch software
 alt + shift + d
 	dbus-launch thunar
+alt + shift + g
+	$HOME/.local/opt/ungoogled-chromium
 alt + shift + l
-	lutris
+	xdo activate -N "Lutris" | lutris
 alt + shift + n
-	transmission-gtk
+	xdo activate -N "Transmission" | transmission-gtk
 alt + shift + p
-	keepassxc
-alt + shift + r
-	firefox --kiosk -P discord
+	xdo activate -N "KeePassXC" | keepassxc
 alt + shift + s
-	spotify
+	xdo activate -N "Spotify" | spotify
 alt + shift + t
-	chromium
+    	xdo activate -N "firefox tl" | firefox --class "firefox tl" -P tl
 alt + shift + v
 	virtualbox
+alt + shift + w
+    	xdo activate -N "firefox wa" | firefox --class --kiosk "firefox wa" -P wa
 alt + shift + x
-	firefox -P default
+    	firefox -P default
 
 # Launch scripts & tools
 ctrl + shift + 7
  	$SCR/bmark replace
 ctrl + shift + b
  	$SCR/bmark add
+ctrl + shift + w
+	$SCR/getweather
 alt + shift + q
 	$SCR/menu
 ctrl + shift + Delete
