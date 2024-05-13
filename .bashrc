@@ -21,12 +21,13 @@ alias scr="cd $SCR"
 alias ~='cd'
 
 # Commands
-alias config="git --git-dir=$HOME/.config/dotfiles.git --work-tree=$HOME"
+alias dot="git --git-dir=$HOME/.config/dotfiles.git --work-tree=$HOME"
 alias doas='doas '
 alias lsa="ls -a"
 alias lsl="ls -l"
 alias orph='doas pacman -R $(doas pacman -Qtdq)'
 alias p='patch -p1 < '
+alias psz='package-sizes'
 alias sbs="source $HOME/.bashrc"
 alias sls="rm -f config.h && doas make install && killall dwm"
 alias sudo='doas'
@@ -35,7 +36,7 @@ alias uxr="xrdb -load ~/.config/X11/xresources.d/gruvbox.xresources"
 alias v='nvim'
 alias vbs="nvim $HOME/.bashrc"
 alias vim='nvim'
-alias vsx="nvim $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias vkb="nvim $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
 alias vxi="nvim $XDG_CONFIG_HOME/X11/xinitrc"
 alias vxr="nvim $XDG_CONFIG_HOME/X11/xresources.d/gruvbox.xresources"
 
